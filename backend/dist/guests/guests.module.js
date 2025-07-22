@@ -16,9 +16,16 @@ let GuestsModule = class GuestsModule {
 exports.GuestsModule = GuestsModule;
 exports.GuestsModule = GuestsModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: guest_schema_1.Guest.name, schema: guest_schema_1.GuestSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                { name: guest_schema_1.Guest.name, schema: guest_schema_1.GuestSchema }
+            ]),
+        ],
         providers: [guests_service_1.GuestsService],
-        exports: [guests_service_1.GuestsService],
+        exports: [
+            guests_service_1.GuestsService,
+            mongoose_1.MongooseModule,
+        ],
     })
 ], GuestsModule);
 //# sourceMappingURL=guests.module.js.map

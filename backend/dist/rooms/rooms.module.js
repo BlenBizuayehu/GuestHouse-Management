@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoomsModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const rooms_service_1 = require("./rooms.service");
 const rooms_controller_1 = require("./rooms.controller");
+const rooms_service_1 = require("./rooms.service");
 const room_schema_1 = require("./schemas/room.schema");
 let RoomsModule = class RoomsModule {
 };
@@ -20,6 +20,7 @@ exports.RoomsModule = RoomsModule = __decorate([
         imports: [mongoose_1.MongooseModule.forFeature([{ name: room_schema_1.Room.name, schema: room_schema_1.RoomSchema }])],
         controllers: [rooms_controller_1.RoomsController],
         providers: [rooms_service_1.RoomsService],
+        exports: [rooms_service_1.RoomsService]
     })
 ], RoomsModule);
 //# sourceMappingURL=rooms.module.js.map

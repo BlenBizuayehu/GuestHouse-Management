@@ -7,6 +7,7 @@ var RoomStatus;
     RoomStatus["Occupied"] = "Occupied";
     RoomStatus["Cleaning"] = "Cleaning";
     RoomStatus["Maintenance"] = "Maintenance";
+    RoomStatus["Booked"] = "Booked";
 })(RoomStatus || (exports.RoomStatus = RoomStatus = {}));
 var RoomType;
 (function (RoomType) {

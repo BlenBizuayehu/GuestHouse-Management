@@ -63,9 +63,16 @@ const RoomCard: React.FC<{ room: Room }> = ({ room }) => {
                 </div>
                 <div className="mt-6 flex justify-between items-center">
                     <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">${room.pricePerNight}<span className="text-sm font-normal text-gray-500 dark:text-gray-400">/night</span></span>
-                    <button disabled={room.status !== RoomStatus.Available} className="px-6 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
-                        {room.status === RoomStatus.Available ? 'Book Now' : 'Unavailable'}
-                    </button>
+<button 
+    disabled={room.status !== RoomStatus.Available} 
+    className="px-6 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+    onClick={() => {
+        console.log('Navigating to book room:', room._id); // Debugging
+        window.location.hash = `#/book/${room._id}`;
+    }}
+>
+    {room.status === RoomStatus.Available ? 'Book Now' : 'Unavailable'}
+</button>
                 </div>
             </div>
         </div>

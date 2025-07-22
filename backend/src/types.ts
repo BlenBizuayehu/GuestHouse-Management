@@ -3,6 +3,7 @@ export enum RoomStatus {
   Occupied = 'Occupied',
   Cleaning = 'Cleaning',
   Maintenance = 'Maintenance',
+  Booked='Booked'
 }
 
 export enum RoomType {

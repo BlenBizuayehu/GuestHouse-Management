@@ -49,6 +49,16 @@ let RoomsService = class RoomsService {
         }
         return { message: 'Room deleted successfully' };
     }
+    async findAllPublic() {
+        return this.roomModel.find({ status: 'Available' }).exec();
+    }
+    async findOnePublic(id) {
+        const room = await this.roomModel.findById(id).exec();
+        if (!room) {
+            throw new common_1.NotFoundException('Room not found');
+        }
+        return room;
+    }
 };
 exports.RoomsService = RoomsService;
 exports.RoomsService = RoomsService = __decorate([

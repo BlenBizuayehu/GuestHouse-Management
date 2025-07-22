@@ -9,14 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PublicModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const public_controller_1 = require("./public.controller");
+const rooms_module_1 = require("../rooms/rooms.module");
+const bookings_module_1 = require("../bookings/bookings.module");
 const room_schema_1 = require("../rooms/schemas/room.schema");
+const public_controller_1 = require("./public.controller");
 let PublicModule = class PublicModule {
 };
 exports.PublicModule = PublicModule;
 exports.PublicModule = PublicModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: room_schema_1.Room.name, schema: room_schema_1.RoomSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: room_schema_1.Room.name, schema: room_schema_1.RoomSchema }]),
+            bookings_module_1.BookingsModule,
+            rooms_module_1.RoomsModule
+        ],
         controllers: [public_controller_1.PublicController],
     })
 ], PublicModule);

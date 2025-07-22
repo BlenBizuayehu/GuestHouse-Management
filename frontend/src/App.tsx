@@ -15,6 +15,8 @@ import Sidebar from '../src/components/Sidebar';
 import { Hotel } from '../src/components/ui/Icons';
 import UsersPage from '../src/components/UsersPage';
 import { User } from '../types';
+import BookingConfirmationPage from './components/BookingConfirmationPage';
+import PublicBookingPage from './components/PublicBookingPage';
 
 // API wrapper for authenticated requests
 export const api = {
@@ -67,13 +69,13 @@ export const useAuth = () => {
     return context;
 };
 
-
 const PublicLayout: React.FC = () => {
     const [page, setPage] = useState('home');
 
     useEffect(() => {
         const handleHashChange = () => {
             const hash = window.location.hash.replace('#', '');
+            console.log('Current hash:', hash); // Debugging
             setPage(hash || 'home');
         };
         window.addEventListener('hashchange', handleHashChange);
@@ -82,11 +84,21 @@ const PublicLayout: React.FC = () => {
     }, []);
 
     const renderPage = () => {
+        console.log('Rendering page for:', page); // Debugging
+        
+        // Handle /book/:roomId route
+        if (page.startsWith('/book/')) {
+            const roomId = page.split('/book/')[1];
+            return <PublicBookingPage roomId={roomId} />;
+        }
+        
+        // Handle other routes
         switch (page) {
             case '/rooms':
                 return <PublicRoomsPage />;
+            case '/booking-confirmation':
+                return <BookingConfirmationPage />;
             case '/login':
-                 // This case should be handled by the main router, but as a fallback:
                 window.location.hash = '#/dashboard/login';
                 return null;
             default:

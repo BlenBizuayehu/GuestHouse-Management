@@ -2,9 +2,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Room, RoomDocument } from './schemas/room.schema';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { Room, RoomDocument } from './schemas/room.schema';
 
 @Injectable()
 export class RoomsService {
@@ -19,7 +19,7 @@ export class RoomsService {
     return this.roomModel.find().exec();
   }
 
-  async findOne(id: string): Promise<Room> {
+  async findOne(id: string): Promise<RoomDocument> {
     const room = await this.roomModel.findById(id).exec();
     if (!room) {
       throw new NotFoundException(`Room with ID "${id}" not found`);
@@ -42,4 +42,17 @@ export class RoomsService {
     }
     return { message: 'Room deleted successfully' };
   }
+
+  // backend/src/rooms/rooms.service.ts
+async findAllPublic(): Promise<Room[]> {
+    return this.roomModel.find({ status: 'Available' }).exec();
+}
+
+async findOnePublic(id: string): Promise<Room> {
+    const room = await this.roomModel.findById(id).exec();
+    if (!room) {
+        throw new NotFoundException('Room not found');
+    }
+    return room;
+}
 }

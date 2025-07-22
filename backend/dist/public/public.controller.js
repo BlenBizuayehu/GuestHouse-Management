@@ -14,15 +14,21 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PublicController = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
-const room_schema_1 = require("../rooms/schemas/room.schema");
+const bookings_service_1 = require("../bookings/bookings.service");
+const rooms_service_1 = require("../rooms/rooms.service");
 let PublicController = class PublicController {
-    constructor(roomModel) {
-        this.roomModel = roomModel;
+    constructor(roomsService, bookingsService) {
+        this.roomsService = roomsService;
+        this.bookingsService = bookingsService;
     }
     async findAllRooms() {
-        return this.roomModel.find().exec();
+        return this.roomsService.findAllPublic();
+    }
+    async findOneRoom(id) {
+        return this.roomsService.findOnePublic(id);
+    }
+    async createBooking(bookingData) {
+        return this.bookingsService.createPublicBooking(bookingData);
     }
 };
 exports.PublicController = PublicController;
@@ -32,9 +38,23 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PublicController.prototype, "findAllRooms", null);
+__decorate([
+    (0, common_1.Get)('rooms/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PublicController.prototype, "findOneRoom", null);
+__decorate([
+    (0, common_1.Post)('bookings'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PublicController.prototype, "createBooking", null);
 exports.PublicController = PublicController = __decorate([
     (0, common_1.Controller)('public'),
-    __param(0, (0, mongoose_1.InjectModel)(room_schema_1.Room.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [rooms_service_1.RoomsService,
+        bookings_service_1.BookingsService])
 ], PublicController);
 //# sourceMappingURL=public.controller.js.map

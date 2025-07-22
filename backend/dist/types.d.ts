@@ -2,7 +2,8 @@ export declare enum RoomStatus {
     Available = "Available",
     Occupied = "Occupied",
     Cleaning = "Cleaning",
-    Maintenance = "Maintenance"
+    Maintenance = "Maintenance",
+    Booked = "Booked"
 }
 export declare enum RoomType {
     Single = "Single",

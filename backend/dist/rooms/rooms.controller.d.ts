@@ -6,7 +6,7 @@ export declare class RoomsController {
     constructor(roomsService: RoomsService);
     create(createRoomDto: CreateRoomDto): Promise<import("./schemas/room.schema").Room>;
     findAll(): Promise<import("./schemas/room.schema").Room[]>;
-    findOne(id: string): Promise<import("./schemas/room.schema").Room>;
+    findOne(id: string): Promise<import("./schemas/room.schema").RoomDocument>;
     update(id: string, updateRoomDto: UpdateRoomDto): Promise<import("./schemas/room.schema").Room>;
     remove(id: string): Promise<any>;
 }
