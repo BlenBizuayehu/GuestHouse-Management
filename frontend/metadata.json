@@ -1,0 +1,6 @@
+{
+  "name": "NestHaven Guest House Management",
+  "description": "A comprehensive guest house management system featuring room and booking management, reporting, and AI-powered guest experience tools using the Gemini API.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
